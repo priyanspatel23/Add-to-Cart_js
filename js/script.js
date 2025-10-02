@@ -1782,13 +1782,13 @@ let DisplayProducts = () => {
 
   records.forEach((rec) => {
     str += `
-       <div class="col-12 col-md-4 py-3">
+       <div class="col-12 col-md-6 col-lg-4 py-3">
          <div class="card product-card shadow" onclick="showProductDetail(${rec.id})" style="cursor:pointer;">
            <img src="${rec.thumbnail}" class="card-img-top" alt="${rec.title}">
            <div class="card-body text-center">
              <h6 class="card-title">${rec.title}</h6>
              <p class="price">$${rec.price}</p>
-             <button class="btn add-cart-btn" onclick="cartHandler(${rec.id}); event.stopPropagation();">Add to Cart</button>
+             <button class="btn add-cart-btn" onclick="addacart(${rec.id}); event.stopPropagation();">Add to Cart</button>
            </div>
          </div>
        </div>
@@ -1805,7 +1805,7 @@ let DisplayProducts = () => {
   document.getElementById("cartCount").innerText = cartProducts.length;
 };
 
-const cartHandler = (id) => {
+const addacart = (id) => {
   let ProductInCart = cartProducts.find((e) => e.id == id);
   if (ProductInCart) ProductInCart.Quontity += 1;
   else {
@@ -1851,7 +1851,7 @@ function showProductDetail(id) {
           ${reviewHTML || "<p>No reviews yet.</p>"}
         </div>
         <div class="d-flex gap-2 mb-3">
-          <button class="btn add-cart-btn " onclick="cartHandler(${p.id})">Add to Cart</button>
+          <button class="btn add-cart-btn " onclick="addacart(${p.id})">Add to Cart</button>
           <button class="btn by-btn" onclick="alert('Buying product ${p.id}')">Buy Now</button>
         </div>
         <button class="btn btn-secondary" onclick="back()">Back to Products</button>
