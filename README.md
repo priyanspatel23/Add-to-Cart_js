@@ -46,4 +46,4 @@ Displays all the products added to the cart. Users can **increase/decrease quant
 ## 🚀 How to Run
 1. Clone this repository  
    ```bash
-   git clone https://github.com/your-username/add-to-cart-project.git
+   git clone https://github.com/priyanspatel23/Add-to-Cart_js
