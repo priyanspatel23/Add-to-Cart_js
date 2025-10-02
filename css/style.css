@@ -55,7 +55,7 @@ body {
 
 .add-cart-btn {
   background: linear-gradient(90deg, #29ffc6, #B388FF);
-  color: white;
+  color: black;
   border: none;
   width: 100%;
   padding: 10px;
@@ -65,7 +65,7 @@ body {
 }
 .by-btn{
   background: linear-gradient(90deg,  #B388FF, #29ffc6);
-  color: white;
+  color: black;
   border: none;
   width: 100%;
   padding: 10px;
