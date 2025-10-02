@@ -14,24 +14,28 @@ let cartProductsRender = () => {
         total += item.price * item.Quontity;
 
         cartProductCards += `
-            <div class="col-12 col-md-4 py-3">
-                <div class="card p-3 rounded-4">
-                    <div class="cardthumbnail text-center">
-                        <img class="img-fluid" src="${item.thumbnail}" alt="${item.name}">
-                    </div>
-                    <div class="card-body text-center">
-                        <h5>${item.name}</h5>
-                        <p>Price: $${item.price}</p>
-                        
-                        <div class="d-flex justify-content-center align-items-center mb-2">
+            <div class="col-12 py-3 d-flex align-items-center cart-pri">
+                <div class="col-2 cardthumbnail text-center">
+                    <img class="img-fluid" src="${item.thumbnail}" alt="${item.name}">
+                </div>
+                <div class="col-2 text-center">
+                     <h5>${item.name}</h5>
+                </div>
+                <div class="col-2 text-center">
+                    <p>Price: $${item.price}</p>
+                </div>
+                <div class="col-2 text-center">
+                    <div class="d-flex justify-content-center align-items-center mb-2">
                             <button class="btn btn-sm btn-outline-light me-2" onclick="updateQuantity(${item.id}, -1)">-</button>
                             <span class="mx-2 fw-bold">${item.Quontity}</span>
                             <button class="btn btn-sm btn-outline-light ms-2" onclick="updateQuantity(${item.id}, 1)">+</button>
-                        </div>
-
-                        <p><b>Subtotal: ${(item.price * item.Quontity).toFixed(2)}</b></p>
-                        <button class="btn btn-danger" onclick="removeFromCart(${item.id})">Remove</button>
                     </div>
+                </div>
+                <div class="col-2 text-center">
+                    <p><b>Subtotal: ${(item.price * item.Quontity).toFixed(2)}</b></p>
+                </div>
+                <div class="col-2 text-center">
+                    <button class="btn btn-danger" onclick="removeFromCart(${item.id})">Remove</button>
                 </div>
             </div>
         `;
