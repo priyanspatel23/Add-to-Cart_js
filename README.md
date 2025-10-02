@@ -39,7 +39,7 @@ Displays all the products added to the cart. Users can **increase/decrease quant
 ## 🛠️ Tech Stack
 - **HTML5**
 - **CSS3**
-- **Vanilla JavaScript**
+- **JavaScript**
 
 ---
 
