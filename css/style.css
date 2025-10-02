@@ -1,0 +1,79 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1E1633;
+  color: #B388FF;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #B388FF;
+  cursor: pointer;
+}
+.cart-btn {
+  background: #2A2342;
+  color: #B388FF;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.product-card {
+  background: #2A2342;
+  border-radius: 16px;
+  padding: 20px;
+  height: 100%;
+  transition: 0.3s ease;
+  color: #B388FF;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  max-height: 180px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.card-title {
+  font-size: 1rem;
+  color: #fff;
+  min-height: 40px;
+}
+
+.price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #29ffc6;
+}
+
+.add-cart-btn {
+  background: linear-gradient(90deg, #29ffc6, #B388FF);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.by-btn{
+  background: linear-gradient(90deg,  #B388FF, #29ffc6);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.add-cart-btn:hover, .by-btn:hover {
+  cursor: pointer;
+  color: black;
+}
