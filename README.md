@@ -1,5 +1,3 @@
-![Screenshot 2025-10-08 103953](https://github.com/user-attachments/assets/c64ca4f8-5f20-488c-8780-abc2a7114d27)
-
 # 🛒 Add to Cart Project
 
 This is a simple **Add to Cart web application** built using **HTML, CSS, and JavaScript**.
