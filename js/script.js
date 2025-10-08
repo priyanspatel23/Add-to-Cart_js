@@ -1782,13 +1782,13 @@ let DisplayProducts = () => {
 
   records.forEach((rec) => {
     str += `
-       <div class="col-12 col-md-4 py-3">
+       <div class="col-12 col-md-6 col-lg-4 py-3">
          <div class="card product-card shadow" onclick="showProductDetail(${rec.id})" style="cursor:pointer;">
            <img src="${rec.thumbnail}" class="card-img-top" alt="${rec.title}">
            <div class="card-body text-center">
              <h6 class="card-title">${rec.title}</h6>
              <p class="price">$${rec.price}</p>
-             <button class="btn add-cart-btn" onclick="cartHandler(${rec.id}); event.stopPropagation();">Add to Cart</button>
+             <button class="btn add-cart-btn" onclick="addacart(${rec.id}); event.stopPropagation();">Add to Cart</button>
            </div>
          </div>
        </div>
@@ -1805,7 +1805,7 @@ let DisplayProducts = () => {
   document.getElementById("cartCount").innerText = cartProducts.length;
 };
 
-const cartHandler = (id) => {
+const addacart = (id) => {
   let ProductInCart = cartProducts.find((e) => e.id == id);
   if (ProductInCart) ProductInCart.Quontity += 1;
   else {
@@ -1851,7 +1851,7 @@ function showProductDetail(id) {
           ${reviewHTML || "<p>No reviews yet.</p>"}
         </div>
         <div class="d-flex gap-2 mb-3">
-          <button class="btn add-cart-btn " onclick="cartHandler(${p.id})">Add to Cart</button>
+          <button class="btn add-cart-btn " onclick="addacart(${p.id})">Add to Cart</button>
           <button class="btn by-btn" onclick="alert('Buying product ${p.id}')">Buy Now</button>
         </div>
         <button class="btn btn-secondary" onclick="back()">Back to Products</button>
@@ -1867,4 +1867,126 @@ function back() {
   document.querySelector("#productDetail").style.display = 'none';
   document.querySelector("#row").style.display = 'flex';
 }
+
+function searchProducts() {
+  let query = document.getElementById("searchInput").value.toLowerCase();
+  let records = JSON.parse(localStorage.getItem("products")) || [];
+  let filtered = records.filter(
+    (p) =>
+      p.title.toLowerCase().includes(query) ||
+      p.brand?.toLowerCase().includes(query) ||
+      p.description?.toLowerCase().includes(query)
+  );
+
+  let str = "";
+  let data = document.getElementById("row");
+
+  filtered.forEach((rec) => {
+    str += `
+       <div class="col-12 col-md-6 col-lg-4 py-3">
+         <div class="card product-card shadow" onclick="showProductDetail(${rec.id})" style="cursor:pointer;">
+           <img src="${rec.thumbnail}" class="card-img-top" alt="${rec.title}">
+           <div class="card-body text-center">
+             <h6 class="card-title">${rec.title}</h6>
+             <p class="price">$${rec.price}</p>
+             <button class="btn add-cart-btn" onclick="addacart(${rec.id}); event.stopPropagation();">Add to Cart</button>
+           </div>
+         </div>
+       </div>
+    `;
+  });
+
+  if (filtered.length === 0) {
+    str = `<div class="text-center py-5"><h5>No products found!</h5></div>`;
+  }
+
+  data.innerHTML = str;
+}
 back();
+
+function showLoginOption() {
+  let loginData = JSON.parse(localStorage.getItem("loginData"));
+  let area = document.getElementById("loginArea");
+
+  if (loginData) {
+    area.innerHTML = `
+      <img src="./img/user.png" alt="user" title="${loginData.username}"
+        class="rounded-circle shadow-sm"
+        onclick="openUserPage()"
+        style="width:60px; height:60px; cursor:pointer;">
+    `;
+  } else {
+    area.innerHTML = `
+      <a href="#" onclick="openLoginModal()" class="text-decoration-none">
+        <i class="fa-solid fa-circle-user fa-2xl" style="color: #b388ff;"></i>
+      </a>
+    `;
+  }
+}
+
+function openLoginModal() {
+  const modalEl = document.getElementById("loginModal");
+  const modal = new bootstrap.Modal(modalEl);
+  modal.show();
+}
+
+function saveLogin(event) {
+  event.preventDefault();
+
+  let name = document.getElementById("username").value.trim();
+  let contact = document.getElementById("contact").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
+  let address = document.getElementById("address").value.trim();
+
+  if (!name || !contact || !email || !password || !address) {
+    alert("Please fill all fields!");
+    return;
+  }
+
+  let user = {
+    username: name,
+    contact: contact,
+    email: email,
+    password: password,
+    address: address,
+    loginTime: new Date().toLocaleString(),
+  };
+
+  localStorage.setItem("loginData", JSON.stringify(user));
+
+  const modal = bootstrap.Modal.getInstance(document.getElementById("loginModal"));
+  modal.hide();
+
+  window.location.reload();
+}
+
+function openUserPage() {
+  window.location.href = "./user.html";
+}
+
+function buyProduct(id) {
+  let records = JSON.parse(localStorage.getItem("products")) || [];
+  let product = records.find(p => p.id == id);
+
+  if (!product) return alert("Product not found!");
+
+  let soldItems = JSON.parse(localStorage.getItem("soldItems")) || [];
+  soldItems.push({
+    id: product.id,
+    name: product.title,
+    price: product.price,
+    date: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("soldItems", JSON.stringify(soldItems));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  showLoginOption();
+
+  setTimeout(() => {
+    let user = JSON.parse(localStorage.getItem("loginData"));
+    if (!user) openLoginModal();
+  }, 4000);
+});

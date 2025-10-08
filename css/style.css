@@ -30,42 +30,27 @@ body {
   transition: 0.3s ease;
   color: #B388FF;
 }
-
 .product-card:hover {
   transform: translateY(-5px);
 }
-
 .product-card img {
   max-height: 180px;
   object-fit: contain;
   margin-bottom: 15px;
 }
-
 .card-title {
   font-size: 1rem;
   color: #fff;
   min-height: 40px;
 }
-
 .price {
   font-size: 1rem;
   font-weight: bold;
   color: #29ffc6;
 }
-
-.add-cart-btn {
+.add-cart-btn , .by-btn{
   background: linear-gradient(90deg, #29ffc6, #B388FF);
-  color: white;
-  border: none;
-  width: 100%;
-  padding: 10px;
-  border-radius: 12px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-.by-btn{
-  background: linear-gradient(90deg,  #B388FF, #29ffc6);
-  color: white;
+  color: black;
   border: none;
   width: 100%;
   padding: 10px;
@@ -76,4 +61,25 @@ body {
 .add-cart-btn:hover, .by-btn:hover {
   cursor: pointer;
   color: black;
+}
+#searchInput {
+  max-width: 100%;
+  border: 1px solid #B388FF;
+  background-color: transparent;
+  color: #B388FF;
+}
+#searchInput:focus {
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+#searchInput::placeholder {
+  color: #B388FF;
+}
+.cart-btn {
+  font-weight: 500;
+}
+#loginArea img {
+  transition: 0.3s;
+}
+#loginArea img:hover {
+  transform: scale(1.1);
 }
